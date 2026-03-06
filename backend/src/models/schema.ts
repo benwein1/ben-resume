@@ -1,7 +1,7 @@
 import { pgTable, integer, varchar, text, timestamp, boolean } from 'drizzle-orm/pg-core';
 
 export const candidates = pgTable('candidates', {
-  id: integer('id').primaryKey(),
+  id: integer('id').primaryKey().generatedByDefaultAsIdentity(),
   fullName: varchar('fullName', { length: 255 }),
   jobTitle: varchar('jobTitle', { length: 255 }),
   email: varchar('email', { length: 255 }),
@@ -15,7 +15,10 @@ export const candidates = pgTable('candidates', {
 });
 
 export const experiences = pgTable('expericenes', {
-  candidateId: integer('candidateId').primaryKey(),
+  id: integer('id').primaryKey().generatedByDefaultAsIdentity(),
+  candidateId: integer('candidateId')
+    .notNull()
+    .references(() => candidates.id, { onDelete: 'cascade' }),
   role: varchar('role', { length: 255 }),
   company: varchar('company', { length: 255 }),
   startDate: timestamp('start_date', { withTimezone: false }),
@@ -25,7 +28,10 @@ export const experiences = pgTable('expericenes', {
 });
 
 export const education = pgTable('education', {
-  candidateId: integer('candidateId').primaryKey(),
+  id: integer('id').primaryKey().generatedByDefaultAsIdentity(),
+  candidateId: integer('candidateId')
+    .notNull()
+    .references(() => candidates.id, { onDelete: 'cascade' }),
   institution: varchar('institution', { length: 255 }),
   degree: varchar('degree', { length: 255 }),
   field: varchar('field', { length: 255 }),
@@ -35,7 +41,10 @@ export const education = pgTable('education', {
 });
 
 export const skills = pgTable('skills', {
-  candidateId: integer('candidateId').primaryKey(),
+  id: integer('id').primaryKey().generatedByDefaultAsIdentity(),
+  candidateId: integer('candidateId')
+    .notNull()
+    .references(() => candidates.id, { onDelete: 'cascade' }),
   skillName: varchar('skillName', { length: 255 }),
   category: integer('category'),
   level: integer('level'),
@@ -43,7 +52,10 @@ export const skills = pgTable('skills', {
 });
 
 export const projects = pgTable('projects', {
-  candidateId: integer('candidateId').primaryKey(),
+  id: integer('id').primaryKey().generatedByDefaultAsIdentity(),
+  candidateId: integer('candidateId')
+    .notNull()
+    .references(() => candidates.id, { onDelete: 'cascade' }),
   projectTitle: varchar('projectTitle', { length: 255 }),
   description: text('description'),
   techStack: text('techStack'),
@@ -52,7 +64,10 @@ export const projects = pgTable('projects', {
 });
 
 export const certifications = pgTable('certifications', {
-  candidateId: integer('candidateId').primaryKey(),
+  id: integer('id').primaryKey().generatedByDefaultAsIdentity(),
+  candidateId: integer('candidateId')
+    .notNull()
+    .references(() => candidates.id, { onDelete: 'cascade' }),
   certificationName: varchar('certificationName', { length: 255 }),
   issuer: text('issuer'),
   date: timestamp('Date', { withTimezone: false }),
@@ -60,7 +75,10 @@ export const certifications = pgTable('certifications', {
 });
 
 export const recommendations = pgTable('recommendations', {
-  candidateId: integer('candidateId').primaryKey(),
+  id: integer('id').primaryKey().generatedByDefaultAsIdentity(),
+  candidateId: integer('candidateId')
+    .notNull()
+    .references(() => candidates.id, { onDelete: 'cascade' }),
   name: varchar('name', { length: 255 }),
   role: text('role'),
   recommendation: text('recommendation')
