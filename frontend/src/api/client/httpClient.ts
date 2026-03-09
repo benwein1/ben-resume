@@ -15,9 +15,7 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> 
     throw new Error(text || `Request failed: ${res.status}`)
   }
 
-  // 204 no content
   if (res.status === 204) return undefined as T
 
   return (await res.json()) as T
 }
-

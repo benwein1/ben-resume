@@ -1,5 +1,5 @@
-import { apiFetch } from './http'
-import type { Candidate, CandidateUpdate } from './types'
+import { apiFetch } from '../client/httpClient'
+import type { Candidate, CandidateUpdate } from '../types'
 
 export const candidateKeys = {
   all: ['candidates'] as const,
@@ -21,4 +21,3 @@ export function updateCandidate(id: number, patch: CandidateUpdate) {
     body: JSON.stringify(patch),
   })
 }
-
