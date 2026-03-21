@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import candidateRoutes from './routes/candidateRoutes';
+import userRoutes from './routes/userRoutes';
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.get('/health', (_req, res) => {
 
 // place to set all the routes 
 app.use('/api/candidates', candidateRoutes);
+app.use('/api/user', userRoutes);
 
 // Simple error handler
 app.use(
@@ -33,4 +35,3 @@ app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`API server listening on port ${PORT}`);
 });
-

@@ -15,6 +15,13 @@
       "when": 1772820711505,
       "tag": "0001_tearful_beyonder",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1774114414480,
+      "tag": "0002_fix_candidate_table_names",
+      "breakpoints": true
     }
   ]
 }

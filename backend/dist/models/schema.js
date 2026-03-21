@@ -15,7 +15,7 @@ exports.candidates = (0, pg_core_1.pgTable)('candidates', {
     imageURL: (0, pg_core_1.varchar)('imageURL', { length: 512 }),
     bio: (0, pg_core_1.text)('bio')
 });
-exports.experiences = (0, pg_core_1.pgTable)('expericenes', {
+exports.experiences = (0, pg_core_1.pgTable)('experiences', {
     id: (0, pg_core_1.integer)('id').primaryKey().generatedByDefaultAsIdentity(),
     candidateId: (0, pg_core_1.integer)('candidateId')
         .notNull()
@@ -24,7 +24,7 @@ exports.experiences = (0, pg_core_1.pgTable)('expericenes', {
     company: (0, pg_core_1.varchar)('company', { length: 255 }),
     startDate: (0, pg_core_1.timestamp)('start_date', { withTimezone: false }),
     endDate: (0, pg_core_1.timestamp)('end_date', { withTimezone: false }),
-    currentlyWorkHere: (0, pg_core_1.boolean)('currentltyWorkHere'),
+    currentlyWorkHere: (0, pg_core_1.boolean)('currentlyWorkHere'),
     description: (0, pg_core_1.text)('description')
 });
 exports.education = (0, pg_core_1.pgTable)('education', {
@@ -67,8 +67,8 @@ exports.certifications = (0, pg_core_1.pgTable)('certifications', {
         .references(() => exports.candidates.id, { onDelete: 'cascade' }),
     certificationName: (0, pg_core_1.varchar)('certificationName', { length: 255 }),
     issuer: (0, pg_core_1.text)('issuer'),
-    date: (0, pg_core_1.timestamp)('Date', { withTimezone: false }),
-    credentialURL: (0, pg_core_1.varchar)('credentianlURL', { length: 512 })
+    date: (0, pg_core_1.timestamp)('date', { withTimezone: false }),
+    credentialURL: (0, pg_core_1.varchar)('credentialURL', { length: 512 })
 });
 exports.recommendations = (0, pg_core_1.pgTable)('recommendations', {
     id: (0, pg_core_1.integer)('id').primaryKey().generatedByDefaultAsIdentity(),

@@ -12,6 +12,22 @@ const cleanOptional = (value) => {
     const trimmed = value.trim();
     return trimmed.length ? trimmed : undefined;
 };
+const toOptionalUrl = (value) => {
+    const cleaned = cleanOptional(value);
+    if (typeof cleaned !== 'string')
+        return undefined;
+    const withScheme = cleaned.startsWith('http://') || cleaned.startsWith('https://')
+        ? cleaned
+        : `https://${cleaned}`;
+    try {
+        // eslint-disable-next-line no-new
+        new URL(withScheme);
+        return withScheme;
+    }
+    catch {
+        return undefined;
+    }
+};
 function formatPeriod(startDate, endDate, currently) {
     const start = startDate ? new Date(startDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : '';
     const end = currently ? 'Present' : endDate ? new Date(endDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : '';
@@ -88,10 +104,10 @@ function mapUserPayloadToCandidate(payload) {
         email: cleanOptional(payload.email),
         phone: cleanOptional(payload.phone),
         location: cleanOptional(payload.location),
-        linkedInURL: cleanOptional(payload.linkedInUrl),
-        gitHubURL: cleanOptional(payload.gitHubUrl),
-        websiteURL: cleanOptional(payload.websiteUrl),
-        imageURL: cleanOptional(payload.imageUrl),
+        linkedInURL: toOptionalUrl(payload.linkedInUrl),
+        gitHubURL: toOptionalUrl(payload.gitHubUrl),
+        websiteURL: toOptionalUrl(payload.websiteUrl),
+        imageURL: toOptionalUrl(payload.imageUrl),
         bio: cleanOptional(payload.bio),
         experiences: Array.isArray(payload.experiences)
             ? payload.experiences.map((item) => ({
@@ -117,15 +133,16 @@ function mapUserPayloadToCandidate(payload) {
                 projectTitle: item.title,
                 description: item.summary,
                 techStack: Array.isArray(item.tags) ? item.tags.join(', ') : undefined,
-                liveURL: item.liveUrl,
-                gitHubURL: item.githubUrl
+                liveURL: toOptionalUrl(item.liveUrl),
+                gitHubURL: toOptionalUrl(item.githubUrl)
             }))
             : undefined,
         certifications: Array.isArray(payload.certifications)
             ? payload.certifications.map((item) => ({
                 certificationName: item.name,
                 issuer: item.issuer,
-                credentialURL: item.credentialId
+                // Old candidate schema requires URL. Keep only valid URLs.
+                credentialURL: toOptionalUrl(item.credentialId)
             }))
             : undefined,
         recommendations: Array.isArray(payload.recommendations)

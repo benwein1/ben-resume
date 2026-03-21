@@ -1,6 +1,6 @@
 {
-  "id": "7f7e0c58-15b2-442a-a372-f2d32ed89680",
-  "prevId": "42d1f5a3-2936-4394-9b82-775bf548d722",
+  "id": "edcd52ce-b81c-460c-957b-c2bc1fec5b0e",
+  "prevId": "7f7e0c58-15b2-442a-a372-f2d32ed89680",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -14,15 +14,15 @@
           "primaryKey": true,
           "notNull": true,
           "identity": {
-            "type": "byDefault",
             "name": "candidates_id_seq",
-            "schema": "public",
             "increment": "1",
-            "startWith": "1",
             "minValue": "1",
             "maxValue": "2147483647",
+            "startWith": "1",
             "cache": "1",
-            "cycle": false
+            "cycle": false,
+            "schema": "public",
+            "type": "byDefault"
           }
         },
         "fullName": {
@@ -104,15 +104,15 @@
           "primaryKey": true,
           "notNull": true,
           "identity": {
-            "type": "byDefault",
             "name": "certifications_id_seq",
-            "schema": "public",
             "increment": "1",
-            "startWith": "1",
             "minValue": "1",
             "maxValue": "2147483647",
+            "startWith": "1",
             "cache": "1",
-            "cycle": false
+            "cycle": false,
+            "schema": "public",
+            "type": "byDefault"
           }
         },
         "candidateId": {
@@ -151,15 +151,15 @@
         "certifications_candidateId_candidates_id_fk": {
           "name": "certifications_candidateId_candidates_id_fk",
           "tableFrom": "certifications",
-          "tableTo": "candidates",
           "columnsFrom": [
             "candidateId"
           ],
+          "tableTo": "candidates",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -178,15 +178,15 @@
           "primaryKey": true,
           "notNull": true,
           "identity": {
-            "type": "byDefault",
             "name": "education_id_seq",
-            "schema": "public",
             "increment": "1",
-            "startWith": "1",
             "minValue": "1",
             "maxValue": "2147483647",
+            "startWith": "1",
             "cache": "1",
-            "cycle": false
+            "cycle": false,
+            "schema": "public",
+            "type": "byDefault"
           }
         },
         "candidateId": {
@@ -237,15 +237,15 @@
         "education_candidateId_candidates_id_fk": {
           "name": "education_candidateId_candidates_id_fk",
           "tableFrom": "education",
-          "tableTo": "candidates",
           "columnsFrom": [
             "candidateId"
           ],
+          "tableTo": "candidates",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -264,15 +264,15 @@
           "primaryKey": true,
           "notNull": true,
           "identity": {
-            "type": "byDefault",
             "name": "expericenes_id_seq",
-            "schema": "public",
             "increment": "1",
-            "startWith": "1",
             "minValue": "1",
             "maxValue": "2147483647",
+            "startWith": "1",
             "cache": "1",
-            "cycle": false
+            "cycle": false,
+            "schema": "public",
+            "type": "byDefault"
           }
         },
         "candidateId": {
@@ -323,15 +323,15 @@
         "expericenes_candidateId_candidates_id_fk": {
           "name": "expericenes_candidateId_candidates_id_fk",
           "tableFrom": "expericenes",
-          "tableTo": "candidates",
           "columnsFrom": [
             "candidateId"
           ],
+          "tableTo": "candidates",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -350,15 +350,15 @@
           "primaryKey": true,
           "notNull": true,
           "identity": {
-            "type": "byDefault",
             "name": "projects_id_seq",
-            "schema": "public",
             "increment": "1",
-            "startWith": "1",
             "minValue": "1",
             "maxValue": "2147483647",
+            "startWith": "1",
             "cache": "1",
-            "cycle": false
+            "cycle": false,
+            "schema": "public",
+            "type": "byDefault"
           }
         },
         "candidateId": {
@@ -403,15 +403,15 @@
         "projects_candidateId_candidates_id_fk": {
           "name": "projects_candidateId_candidates_id_fk",
           "tableFrom": "projects",
-          "tableTo": "candidates",
           "columnsFrom": [
             "candidateId"
           ],
+          "tableTo": "candidates",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -430,15 +430,15 @@
           "primaryKey": true,
           "notNull": true,
           "identity": {
-            "type": "byDefault",
             "name": "recommendations_id_seq",
-            "schema": "public",
             "increment": "1",
-            "startWith": "1",
             "minValue": "1",
             "maxValue": "2147483647",
+            "startWith": "1",
             "cache": "1",
-            "cycle": false
+            "cycle": false,
+            "schema": "public",
+            "type": "byDefault"
           }
         },
         "candidateId": {
@@ -471,15 +471,15 @@
         "recommendations_candidateId_candidates_id_fk": {
           "name": "recommendations_candidateId_candidates_id_fk",
           "tableFrom": "recommendations",
-          "tableTo": "candidates",
           "columnsFrom": [
             "candidateId"
           ],
+          "tableTo": "candidates",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -498,15 +498,15 @@
           "primaryKey": true,
           "notNull": true,
           "identity": {
-            "type": "byDefault",
             "name": "skills_id_seq",
-            "schema": "public",
             "increment": "1",
-            "startWith": "1",
             "minValue": "1",
             "maxValue": "2147483647",
+            "startWith": "1",
             "cache": "1",
-            "cycle": false
+            "cycle": false,
+            "schema": "public",
+            "type": "byDefault"
           }
         },
         "candidateId": {
@@ -545,15 +545,15 @@
         "skills_candidateId_candidates_id_fk": {
           "name": "skills_candidateId_candidates_id_fk",
           "tableFrom": "skills",
-          "tableTo": "candidates",
           "columnsFrom": [
             "candidateId"
           ],
+          "tableTo": "candidates",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -565,10 +565,10 @@
   },
   "enums": {},
   "schemas": {},
+  "views": {},
   "sequences": {},
   "roles": {},
   "policies": {},
-  "views": {},
   "_meta": {
     "columns": {},
     "schemas": {},

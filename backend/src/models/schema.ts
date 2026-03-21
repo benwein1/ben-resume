@@ -14,7 +14,7 @@ export const candidates = pgTable('candidates', {
   bio: text('bio')
 });
 
-export const experiences = pgTable('expericenes', {
+export const experiences = pgTable('experiences', {
   id: integer('id').primaryKey().generatedByDefaultAsIdentity(),
   candidateId: integer('candidateId')
     .notNull()
@@ -23,7 +23,7 @@ export const experiences = pgTable('expericenes', {
   company: varchar('company', { length: 255 }),
   startDate: timestamp('start_date', { withTimezone: false }),
   endDate: timestamp('end_date', { withTimezone: false }),
-  currentlyWorkHere: boolean('currentltyWorkHere'),
+  currentlyWorkHere: boolean('currentlyWorkHere'),
   description: text('description')
 });
 
@@ -70,8 +70,8 @@ export const certifications = pgTable('certifications', {
     .references(() => candidates.id, { onDelete: 'cascade' }),
   certificationName: varchar('certificationName', { length: 255 }),
   issuer: text('issuer'),
-  date: timestamp('Date', { withTimezone: false }),
-  credentialURL: varchar('credentianlURL', { length: 512 })
+  date: timestamp('date', { withTimezone: false }),
+  credentialURL: varchar('credentialURL', { length: 512 })
 });
 
 export const recommendations = pgTable('recommendations', {
@@ -83,4 +83,3 @@ export const recommendations = pgTable('recommendations', {
   role: text('role'),
   recommendation: text('recommendation')
 });
-

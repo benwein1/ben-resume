@@ -1,0 +1,70 @@
+.edit-resume-drawer {
+  width: min(94vw, 580px);
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  background: #fafafa;
+}
+
+.edit-resume-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.4rem;
+  border-bottom: 1px solid #dde2ea;
+}
+
+.edit-resume-drawer__header h2 {
+  margin: 0;
+  color: #5e72d8;
+  font-size: 2rem;
+}
+
+.edit-resume-drawer__tabs {
+  border-bottom: 1px solid #dde2ea;
+  padding: 0 1rem;
+}
+
+.edit-resume-drawer__body {
+  overflow: auto;
+  padding: 1rem 1.4rem;
+}
+
+.edit-resume-drawer__group {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.edit-resume-drawer__section-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-resume-drawer__block {
+  border: 1px solid #d5d9e2;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.edit-resume-drawer__block-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-resume-drawer__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.edit-resume-drawer__footer {
+  border-top: 1px solid #dde2ea;
+  padding: 1rem 1.4rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.55rem;
+}
