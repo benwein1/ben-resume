@@ -2,7 +2,7 @@
   max-width: 1220px;
   margin: 0 auto;
   padding: 0 1rem 4rem;
-  color: #2f2f36;
+  color: #f4f4f6;
 }
 
 .resume-hero {
@@ -13,12 +13,12 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #8a8f95;
+  color: #fdfdfd;
 }
 
-.resume-hero__avatar {
-  width: 180px;
-  height: 180px;
+.resume-hero .resume-hero__avatar.MuiAvatar-root {
+  width: 300px !important;
+  height: 300px !important;
   border: 6px solid #8f9398;
   background: #666;
   margin-bottom: 1.25rem;
@@ -27,12 +27,13 @@
 .resume-hero h1 {
   margin: 0;
   font-size: clamp(2.4rem, 6vw, 4.3rem);
-  color: #8f9398;
+  color: #ffffff;
 }
 
 .resume-hero__headline {
   margin: 0.65rem 0 1.35rem;
   font-size: clamp(1.05rem, 2.8vw, 2rem);
+  color: rgba(255, 255, 255, 0.94);
 }
 
 .resume-hero__contacts {
@@ -49,8 +50,8 @@
   gap: 0.4rem;
   padding: 0.5rem 0.8rem;
   border-radius: 10px;
-  background: rgba(155, 161, 167, 0.85);
-  color: #1e2022;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
   font-size: 0.97rem;
   text-decoration: none;
 }
@@ -68,27 +69,37 @@
   top: 0;
   z-index: 10;
   display: flex;
-  gap: 0.45rem;
+  gap: 0.6rem;
   flex-wrap: wrap;
-  padding: 0.85rem 0;
-  background: linear-gradient(180deg, rgba(89, 86, 192, 0.95), rgba(89, 86, 192, 0.74));
+  justify-content: center;
+  padding: 0.9rem 0.4rem;
+  background: linear-gradient(180deg, rgba(89, 86, 192, 0.96), rgba(89, 86, 192, 0.78));
   backdrop-filter: blur(2px);
 }
 
 .resume-nav button {
-  border: none;
-  border-bottom: 2px solid transparent;
-  background: transparent;
-  color: #f4f6ff;
-  font-size: 0.82rem;
-  font-weight: 600;
-  padding: 0.36rem 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  min-height: 36px;
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1;
   cursor: pointer;
   letter-spacing: 0.03em;
+  transition: transform 150ms ease, background-color 150ms ease, border-color 150ms ease;
 }
 
 .resume-nav button:hover {
-  border-bottom-color: #dfe5ff;
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.85);
 }
 
 .resume-section {
@@ -264,6 +275,11 @@
 }
 
 @media (max-width: 980px) {
+  .resume-hero .resume-hero__avatar.MuiAvatar-root {
+    width: 230px !important;
+    height: 230px !important;
+  }
+
   .resume-section {
     padding: 1.25rem;
   }
