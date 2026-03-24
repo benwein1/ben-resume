@@ -76,6 +76,52 @@ export type Candidate = {
   recommendations?: Recommendation[]
 }
 
+export type ExperienceUpdate = {
+  role?: string
+  company?: string
+  startDate?: string
+  endDate?: string
+  currentlyWorkHere?: boolean
+  description?: string
+}
+
+export type EducationUpdate = {
+  institution?: string
+  degree?: string
+  field?: string
+  startDate?: string
+  endDate?: string
+  description?: string
+}
+
+export type SkillUpdate = {
+  skillName?: string
+  category?: number
+  level?: number
+  description?: string
+}
+
+export type ProjectUpdate = {
+  projectTitle?: string
+  description?: string
+  techStack?: string
+  gitHubURL?: string
+  liveURL?: string
+}
+
+export type CertificationUpdate = {
+  certificationName?: string
+  issuer?: string
+  date?: string
+  credentialURL?: string
+}
+
+export type RecommendationUpdate = {
+  name?: string
+  role?: string
+  recommendation?: string
+}
+
 export type CandidateUpdate = Partial<
   Pick<
     Candidate,
@@ -90,5 +136,11 @@ export type CandidateUpdate = Partial<
     | 'imageURL'
     | 'bio'
   >
->
-
+> & {
+  experiences?: ExperienceUpdate[]
+  education?: EducationUpdate[]
+  skills?: SkillUpdate[]
+  projects?: ProjectUpdate[]
+  certifications?: CertificationUpdate[]
+  recommendations?: RecommendationUpdate[]
+}

@@ -1,4 +1,4 @@
-import { ResumePage } from './pages/ResumePage'
+import { ResumePage } from './pages/ResumePage/ResumePage'
 
 function App() {
   return <ResumePage />

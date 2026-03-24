@@ -1,1 +1,1 @@
-export * from './candidateApi'
+export * from './candidateQueries'

@@ -1,12 +1,6 @@
 import { apiFetch } from '../client/httpClient'
 import type { Candidate, CandidateUpdate } from '../types'
 
-export const candidateKeys = {
-  all: ['candidates'] as const,
-  list: () => [...candidateKeys.all, 'list'] as const,
-  detail: (id: number) => [...candidateKeys.all, 'detail', id] as const,
-}
-
 export function listCandidates() {
   return apiFetch<Candidate[]>('/api/candidates')
 }

@@ -1,14 +1,17 @@
 import * as React from 'react'
 import type { ChangeEvent } from 'react'
 import { Button, CircularProgress, Typography } from '@mui/material'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
-import { candidateKeys, getCandidate, listCandidates, updateCandidate } from '../api/candidates'
-import type { CandidateUpdate } from '../api/types'
-import { UserList } from '../components/users/UserList'
-import { CandidateOverview } from '../components/candidate/CandidateOverview'
-import { CandidateSections } from '../components/candidate/CandidateSections'
-import { EditCandidateDrawer } from '../components/candidate/EditCandidateDrawer'
+import {
+  useCandidateDetailQuery,
+  useCandidatesListQuery,
+  useUpdateCandidateMutation,
+} from '../../api/candidates'
+import type { CandidateUpdate } from '../../api/types'
+import { UserList } from '../../components/users/UserList'
+import { CandidateOverview } from '../../components/candidate/CandidateOverview'
+import { CandidateSections } from '../../components/candidate/CandidateSections'
+import { EditCandidateDrawer } from '../../components/candidate/EditCandidateDrawer'
 import './CandidateDetailsPage.scss'
 
 const emptyForm: CandidateUpdate = {
@@ -26,23 +29,14 @@ const emptyForm: CandidateUpdate = {
 
 export function CandidateDetailsPage() {
   const navigate = useNavigate()
-  const qc = useQueryClient()
   const { candidateId } = useParams()
   const selectedId = Number(candidateId)
   const [drawerOpen, setDrawerOpen] = React.useState(false)
   const [form, setForm] = React.useState<CandidateUpdate>(emptyForm)
   const [dirty, setDirty] = React.useState(false)
 
-  const candidatesQuery = useQuery({
-    queryKey: candidateKeys.list(),
-    queryFn: listCandidates,
-  })
-
-  const candidateQuery = useQuery({
-    queryKey: candidateKeys.detail(selectedId),
-    queryFn: () => getCandidate(selectedId),
-    enabled: Number.isFinite(selectedId),
-  })
+  const candidatesQuery = useCandidatesListQuery()
+  const candidateQuery = useCandidateDetailQuery(selectedId, Number.isFinite(selectedId))
 
   React.useEffect(() => {
     if (!Number.isFinite(selectedId) && candidatesQuery.data?.[0]?.id) {
@@ -69,18 +63,7 @@ export function CandidateDetailsPage() {
     setDirty(false)
   }, [candidateQuery.data])
 
-  const updateMutation = useMutation({
-    mutationFn: async (vars: { id: number; patch: CandidateUpdate }) =>
-      updateCandidate(vars.id, vars.patch),
-    onSuccess: async (updated) => {
-      await Promise.all([
-        qc.invalidateQueries({ queryKey: candidateKeys.list() }),
-        qc.setQueryData(candidateKeys.detail(updated.id), updated),
-      ])
-      setDrawerOpen(false)
-      setDirty(false)
-    },
-  })
+  const updateMutation = useUpdateCandidateMutation()
 
   const onChangeField =
     (key: keyof CandidateUpdate) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -161,7 +144,15 @@ export function CandidateDetailsPage() {
         }}
         onSave={() => {
           if (!selected) return
-          updateMutation.mutate({ id: selected.id, patch: form })
+          updateMutation.mutate(
+            { id: selected.id, patch: form },
+            {
+              onSuccess: () => {
+                setDrawerOpen(false)
+                setDirty(false)
+              },
+            },
+          )
         }}
       />
     </main>
